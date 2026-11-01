@@ -1,3 +1,4 @@
+
 '''
 basicamente é uma matriz 3x3, o diferencial é que precisa do end="" para não quebrar a linha,
 já que o print() por padrão quebra a linha. e o print() para quebrar a linha e ir para a 
@@ -23,3 +24,5 @@ tabuleiro =[
     [" ", " ", " "]   
 ]
 mostrar_tabuleiro(tabuleiro)
+
+
