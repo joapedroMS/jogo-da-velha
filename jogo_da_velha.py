@@ -19,4 +19,16 @@ def exibir_tabuleiro(tab):
         print("  +---+---+---+")
     print()
 
-exibir_tabuleiro(criar_tabuleiro())
+def verificar_vitoria(tab, jogador):
+    for i in range(3):
+        if tab[i][0] == jogador and tab[i][1] == jogador and tab[i][2] == jogador:
+            return True
+        if tab[0][i] == jogador and tab[1][i] == jogador and tab[2][i] == jogador:
+            return True
+
+    if tab[0][0] == jogador and tab[1][1] == jogador and tab[2][2] == jogador:
+        return True
+    if tab[0][2] == jogador and tab[1][1] == jogador and tab[2][0] == jogador:
+        return True
+
+    return False
