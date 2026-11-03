@@ -32,3 +32,11 @@ def verificar_vitoria(tab, jogador):
         return True
 
     return False
+
+def obter_posicoes_vazias(tab):
+    vazias = []
+    for l in range(3):
+        for c in range(3):
+            if tab[l][c] == " ":
+                vazias.append((l, c))
+    return vazias
