@@ -40,3 +40,26 @@ def obter_posicoes_vazias(tab):
             if tab[l][c] == " ":
                 vazias.append((l, c))
     return vazias
+
+def ler_coordenada(tab, posicoes_ocupadas_set, nome, simbolo):
+    while True:
+        entrada = input(nome + " (" + simbolo + "), digite linha e coluna (ex: 1 2): ").strip()
+        partes = entrada.split()
+
+        if len(partes) == 2:
+            if partes[0].isdigit() and partes[1].isdigit():
+                l = int(partes[0]) - 1
+                c = int(partes[1]) - 1
+
+                if (0 <= l <= 2) and (0 <= c <= 2):
+                    pos = (l, c)
+                    if pos in posicoes_ocupadas_set:
+                        print("Essa casa ja esta ocupada! Escolha outra.")
+                    else:
+                        return pos
+                else:
+                    print("Valores fora da grade! Digite numeros de 1 a 3.")
+            else:
+                print("Entrada invalida! Digite apenas numeros inteiros.")
+        else:
+            print("Formato incorreto! Digite dois numeros separados por espaco.")
