@@ -91,3 +91,20 @@ def jogada_maquina(tab, simbolo_maquina, simbolo_humano):
             return (l, c)
 
     return livres[0]
+
+def exibir_regras():
+    print("\n" + "=" * 45)
+    print("            REGRAS DO JOGO DA VELHA")
+    print("=" * 45)
+    print("1. O jogo ocorre em uma grade de 3 linhas por 3 colunas.")
+    print("2. Dois jogadores alternam jogadas marcando casas vazias.")
+    print("3. Como jogar: Digite o numero da LINHA seguido")
+    print("   do numero da COLUNA separados por espaco (ex: 2 2).")
+    print("4. Linhas vao de 1 a 3 (cima para baixo).")
+    print("5. Colunas vao de 1 a 3 (esquerda para a direita).")
+    print("6. Vence quem alinhar 3 pecas na horizontal,")
+    print("   vertical ou diagonal primeiro.")
+    print("7. Se todas as 9 casas forem preenchidas sem trinca,")
+    print("   a partida termina em empate ('Deu Velha').")
+    print("=" * 45)
+    input("\nPressione ENTER para voltar ao menu principal...")
