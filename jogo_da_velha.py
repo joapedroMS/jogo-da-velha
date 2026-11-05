@@ -63,3 +63,31 @@ def ler_coordenada(tab, posicoes_ocupadas_set, nome, simbolo):
                 print("Entrada invalida! Digite apenas numeros inteiros.")
         else:
             print("Formato incorreto! Digite dois numeros separados por espaco.")
+
+def jogada_maquina(tab, simbolo_maquina, simbolo_humano):
+    livres = obter_posicoes_vazias(tab)
+
+    for l, c in livres:
+        tab[l][c] = simbolo_maquina
+        if verificar_vitoria(tab, simbolo_maquina):
+            tab[l][c] = " "
+            return (l, c)
+        tab[l][c] = " "
+
+    for l, c in livres:
+        tab[l][c] = simbolo_humano
+        if verificar_vitoria(tab, simbolo_humano):
+            tab[l][c] = " "
+            return (l, c)
+        tab[l][c] = " "
+
+    if tab[1][1] == " ":
+        return (1, 1)
+
+
+    cantos = ((0, 0), (0, 2), (2, 0), (2, 2))
+    for l, c in cantos:
+        if (l, c) in livres:
+            return (l, c)
+
+    return livres[0]
