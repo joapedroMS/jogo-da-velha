@@ -108,4 +108,25 @@ def exibir_regras():
     print("   a partida termina em empate ('Deu Velha').")
     print("=" * 45)
     input("\nPressione ENTER para voltar ao menu principal...")
+
+def exibir_historico_e_placar(placar, historico_resultados):
+    total_jogos = placar["X"] + placar["O"] + placar["Empates"]
+    print("\n" + "=" * 40)
+    print("          HISTORICO E PLACAR GERAL")
+    print("=" * 40)
+    print("Vitorias com peca X : " + str(placar["X"]))
+    print("Vitorias com peca O : " + str(placar["O"]))
+    print("Empates             : " + str(placar["Empates"]))
+    print("Total de Partidas   : " + str(total_jogos))
+    print("-" * 40)
+    print("Historico de Partidas Realizadas:")
+    if len(historico_resultados) == 0:
+        print("  (Nenhuma partida concluida ate o momento)")
+    else:
+        for idx in range(len(historico_resultados)):
+            print("  Rodada " + str(idx + 1) + ": " + historico_resultados[idx])
+    print("=" * 40)
+    input("\nPressione ENTER para voltar ao menu principal...")
+
+
     
