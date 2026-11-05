@@ -108,3 +108,4 @@ def exibir_regras():
     print("   a partida termina em empate ('Deu Velha').")
     print("=" * 45)
     input("\nPressione ENTER para voltar ao menu principal...")
+    
