@@ -25,10 +25,18 @@ def verificar_vitoria(tab, jogador):
             return True
         if tab[0][i] == jogador and tab[1][i] == jogador and tab[2][i] == jogador:
             return True
+    
+    diagonal_principal = True
+    diagonal_secundaria = True
 
-    if tab[0][0] == jogador and tab[1][1] == jogador and tab[2][2] == jogador:
-        return True
-    if tab[0][2] == jogador and tab[1][1] == jogador and tab[2][0] == jogador:
+    for i in range(3):
+        if tab[i][i] != jogador:
+            diagonal_principal = False
+
+        if tab[i][2 - i] != jogador:
+            diagonal_secundaria = False
+
+    if diagonal_principal or diagonal_secundaria:
         return True
 
     return False
@@ -127,6 +135,3 @@ def exibir_historico_e_placar(placar, historico_resultados):
             print("  Rodada " + str(idx + 1) + ": " + historico_resultados[idx])
     print("=" * 40)
     input("\nPressione ENTER para voltar ao menu principal...")
-
-
-    
