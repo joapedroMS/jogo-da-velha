@@ -135,3 +135,32 @@ def exibir_historico_e_placar(placar, historico_resultados):
             print("  Rodada " + str(idx + 1) + ": " + historico_resultados[idx])
     print("=" * 40)
     input("\nPressione ENTER para voltar ao menu principal...")
+
+def configurar_jogadores(modo):
+    nome1 = input("\nNome do Jogador 1: ").strip()
+    if nome1 == "":
+        nome1 = "Jogador 1"
+
+    if modo == "1":
+        nome2 = input("Nome do Jogador 2: ").strip()
+        if nome2 == "":
+            nome2 = "Jogador 2"
+    else:
+        nome2 = "Computador"
+
+    simbolo1 = ""
+    while simbolo1 != "X" and simbolo1 != "O":
+        simbolo1 = input(nome1 + ", escolha seu simbolo (X ou O): ").strip().upper()
+        if simbolo1 != "X" and simbolo1 != "O":
+            print("Opcao invalida! Digite apenas X ou O.")
+
+    if simbolo1 == "X":
+        simbolo2 = "O"
+    else:
+        simbolo2 = "X"
+
+    print("\n[Confirmacao de Jogadores]")
+    print(nome1 + " -> Simbolo: " + simbolo1)
+    print(nome2 + " -> Simbolo: " + simbolo2)
+
+    return ((nome1, simbolo1), (nome2, simbolo2))
