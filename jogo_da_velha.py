@@ -164,3 +164,75 @@ def configurar_jogadores(modo):
     print(nome2 + " -> Simbolo: " + simbolo2)
 
     return ((nome1, simbolo1), (nome2, simbolo2))
+
+def executar_partidas(placar, historico_resultados):
+    print("\n--- ESCOLHA DO MODO DE DISPUTA ---")
+    print("1 - Jogador vs Jogador")
+    print("2 - Jogador vs Maquina")
+
+    modo = ""
+    while modo != "1" and modo != "2":
+        modo = input("Selecione o modo (1 ou 2): ").strip()
+        if modo != "1" and modo != "2":
+            print("Opcao invalida! Digite 1 ou 2.")
+
+    jogador1, jogador2 = configurar_jogadores(modo)
+    nome1, simb1 = jogador1[0], jogador1[1]
+    nome2, simb2 = jogador2[0], jogador2[1]
+
+    em_jogo = True
+    while em_jogo:
+        tabuleiro = criar_tabuleiro()
+        posicoes_ocupadas = set()
+        turno_j1 = True
+        partida_ativa = True
+
+        while partida_ativa:
+            exibir_tabuleiro(tabuleiro)
+
+            if turno_j1:
+                pos = ler_coordenada(tabuleiro, posicoes_ocupadas, nome1, simb1)
+                tabuleiro[pos[0]][pos[1]] = simb1
+                posicoes_ocupadas.add(pos)
+
+                if verificar_vitoria(tabuleiro, simb1):
+                    exibir_tabuleiro(tabuleiro)
+                    print("Vitoria de " + nome1 + " (" + simb1 + ")!")
+                    placar[simb1] = placar[simb1] + 1
+                    historico_resultados.append(nome1 + " (" + simb1 + ") venceu")
+                    partida_ativa = False
+            else:
+                if modo == "1":
+                    pos = ler_coordenada(tabuleiro, posicoes_ocupadas, nome2, simb2)
+                else:
+                    print("Computador realizando jogada...")
+                    pos = jogada_maquina(tabuleiro, simb2, simb1)
+
+                tabuleiro[pos[0]][pos[1]] = simb2
+                posicoes_ocupadas.add(pos)
+
+                if verificar_vitoria(tabuleiro, simb2):
+                    exibir_tabuleiro(tabuleiro)
+                    print("Vitoria de " + nome2 + " (" + simb2 + ")!")
+                    placar[simb2] = placar[simb2] + 1
+                    historico_resultados.append(nome2 + " (" + simb2 + ") venceu")
+                    partida_ativa = False
+
+            if partida_ativa and len(obter_posicoes_vazias(tabuleiro)) == 0:
+                exibir_tabuleiro(tabuleiro)
+                print("Partida empatada (Deu Velha)!")
+                placar["Empates"] = placar["Empates"] + 1
+                historico_resultados.append("Empate")
+                partida_ativa = False
+
+            turno_j1 = not turno_j1
+
+        while True:
+            resp = input("\nDesejam disputar mais uma partida com estes mesmos jogadores? (S/N): ").strip().upper()
+            if resp == "S":
+                break
+            elif resp == "N":
+                em_jogo = False
+                break
+            else:
+                print("Opcao invalida. Digite apenas S ou N.")
