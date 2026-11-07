@@ -236,3 +236,36 @@ def executar_partidas(placar, historico_resultados):
                 break
             else:
                 print("Opcao invalida. Digite apenas S ou N.")
+
+def main():
+    placar = {"X": 0, "O": 0, "Empates": 0}
+    historico_resultados = []
+
+    executando = True
+    while executando:
+        print("\n" + "#" * 38)
+        print("          JOGO DA VELHA EM PYTHON")
+        print("#" * 38)
+        print(" [1] Iniciar Partida")
+        print(" [2] Ver Regras do Jogo")
+        print(" [3] Ver Historico e Placar Geral")
+        print(" [0] Encerrar Programa")
+        print("#" * 38)
+
+        opcao = input("Digite a opcao desejada: ").strip()
+
+        if opcao == "1":
+            executar_partidas(placar, historico_resultados)
+        elif opcao == "2":
+            exibir_regras()
+        elif opcao == "3":
+            exibir_historico_e_placar(placar, historico_resultados)
+        elif opcao == "0":
+            print("\nEncerrando o programa. Obrigado por jogar!")
+            executando = False
+        else:
+            print("Opcao inexistente! Digite 1, 2, 3 ou 0.")
+
+
+if __name__ == "__main__":
+    main()
